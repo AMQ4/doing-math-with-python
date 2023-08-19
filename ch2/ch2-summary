@@ -1,0 +1,95 @@
+* simple graph
+    from pylab import plot, show
+    x = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
+    y = [i ** 2 for i in x]
+    
+    plot(x, y)
+    show()
+
+    * to set a marker, use `marker` keyword argument, it takes one of the following 
+      available markers: ['o', 'x', '+', '*']:
+      plot(x, y, marker='o')
+
+    * Using marker= includes a line connecting the points (this is the default). You can also make 
+      a graph that marks only the points that you specified, without any line connecting them, by
+      omitting marker=:
+      plot(x, y, 'o')
+
+    * when you pass a single list, this list represents the `y-axis`, while the indicies of that list
+      represents the `x-axis`:
+      
+      ex: 
+        l = [10, 20, 30 , 40, 50]
+        plot(l, marker='o')
+        show()
+
+        this equivalent to:
+        plot (range(0, l+1), l, marker='o')
+
+    * when you pass multiple lists as arguments, the first list is used as the x-values and the 
+      subsequent lists are used as the y-values for the plot.
+
+      ex:
+         nyc_temp_2000 = [31.3, 37.3, 47.2, 51.0, 63.5, 71.3, 72.3, 72.7, 66.0, 57.0, 45.3, 31.1]
+         nyc_temp_2006 = [40.9, 35.7, 43.1, 55.7, 63.1, 71.0, 77.9, 75.8, 66.6, 56.2, 51.9, 43.6]
+         nyc_temp_2012 = [37.3, 40.9, 50.9, 54.8, 65.1, 71.0, 78.8, 76.7, 68.8, 58.0, 43.9, 41.5]
+         months = range(1, 13)
+
+         plot(months, nyc_temp_2000, months, nyc_temp_2006, months, nyc_temp_2012)
+         show()
+   
+      equivalent to:
+
+         >>> plot(months, nyc_temp_2000)
+         [<matplotlib.lines.Line2D object at 0x7f1e51351810>]
+         >>> plot(months, nyc_temp_2006)
+         [<matplotlib.lines.Line2D object at 0x7f1e5ae8e390>]
+         >>> plot(months, nyc_temp_2012)
+         [<matplotlib.lines.Line2D object at 0x7f1e5136ccd0>]
+         >>> show()
+
+      the issue here, we do not know which line color corresponds to which year!
+      to solve this:
+      from pylab import legend
+      plot(months, nyc_temp_2000, months, nyc_temp_2006, months, nyc_temp_2012)
+      legend([2000, 2006, 2012])
+
+* Customizing Graphs
+    We can add a title to our graph using the title() function and add labels
+    for the x- and y-axes using the xlabel() and ylabel() functions.
+    We can adjust the range of the axes using the axis() function, this function can be used both to retrieve
+    the current range and to set a new range for the axes.
+    
+    ex:
+        nyc_temp = [53.9, 56.3, 56.4, 53.4, 54.5, 55.8, 56.8, 55.0, 55.3, 54.0, 56.7, 56.4, 57.3]
+        plot(nyc_temp, marker='o')
+
+    * Customizing the Axes
+        to customize axes, use `pylab.axis`  method, ymin, ymax, xmin, and xmax keyword arguments 
+        to set the limits of the x and y axes of a plot, or axis([0, 10, 0, 20])  as example, 
+        this would set the range of the x-axis to (0, 10) and that of the y-axis to (0, 20).
+
+* use, savefig('mygraph.png'), to save your plot
+
+*matplotlib vs pylab:
+    pylab Module:
+        pylab is a module that was historically used to combine the functionality of Matplotlib and 
+        NumPy into a single namespace, making it convenient for interactive plotting and numerical calculations. 
+        However, it's recommended not to use pylab directly, as it's considered deprecated and is no longer actively maintained. 
+        Instead, you should use matplotlib.pyplot (plt) along with separate imports for NumPy when needed.
+
+    matplotlib.pyplot (plt):
+        This module is the recommended way to interact with Matplotlib. 
+        It provides a simplified interface for creating plots and visualizations. 
+
+        ex:
+            x_numbers = [1, 2, 3]
+            y_numbers = [2, 4, 6]
+            plt.plot(x_numbers, y_numbers)
+            plt.show()
+
+    in general, the functions in pylab and matplotlib.pyplot have the same names and provide similar functionality. 
+    This is because pylab is designed to provide a similar interface to Matplotlib's plotting functions and is built on top of matplotlib.pyplot.
+
+    However, using pylab is not recommended because it's considered deprecated and can lead to confusion due to its historical baggage. 
+    Instead, it's recommended to use matplotlib.pyplot directly. 
