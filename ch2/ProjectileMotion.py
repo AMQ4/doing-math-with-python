@@ -40,22 +40,41 @@ def get_Dx_Dy_(U: float, theta: float) -> tuple:
         t += 0.001
     return (x, y)
 
+
+def total_flight_time(u, theta):
+    """
+    Calculate the total time of flight for a projectile.
+
+    :param u: Initial velocity in m/s.
+    :param theta: Launch angle in degrees.
+    :return: Total time of flight in seconds.
+    """
+    return 2 * u * sin(radians(theta)) / G
+
+
+def maximum_traveled_horizontal_distance(u, theta):
+    """
+    Calculate the maximum horizontal distance traveled by a projectile.
+
+    :param u: Initial velocity in m/s.
+    :param theta: Launch angle in degrees.
+    :return: Maximum horizontal distance in meters.
+    """
+    return total_flight_time(u, theta) * cos(radians(theta)) * u
+
+
+def maximum_traveled_vertical_distance(u, theta):
+    """
+    Calculate the maximum vertical distance traveled by a projectile.
+
+    :param u: Initial velocity in m/s.
+    :param theta: Launch angle in degrees.
+    :return: Maximum vertical distance in meters.
+    """
+    return total_flight_time(u, theta)/2 * ( u * sin(radians(theta)) - 0.5 * G * total_flight_time(u, theta)/2)
+
+
 # Set labels and title for the plot
 xlabel("x-coordinate")
 ylabel("y-coordinate")
 title("Projectile motion")
-
-# List of initial velocities
-u_list = [20, 40, 60]
-theta = 45  # Launch angle in degrees
-
-# Plot the trajectories for different initial velocities
-for u in u_list:
-    y_x_value = get_Dx_Dy_(u, radians(45))  # Get x and y values using the method
-    plot(y_x_value[0], y_x_value[1])  # Plot the trajectory
-
-# Add a legend to the plot
-legend(["at 20 m/s", "at 40 m/s", "at 60 m/s"])
-
-# Display the plot
-show()
