@@ -1,0 +1,76 @@
+Measuring the Dispersion
+Finding the Mean:
+Mean(x) = sum(x) / len(x), where x is a normal list
+
+Finding the Median:
+Median(x) = x[len(x) // 2] if the length of x is odd, o.w Mean([x[len(x)], x[len(x) - 1]]), where x is a sorted list
+
+Finding the Mode:
+
+* using collection module, we can find the most occurring item in a given list.
+  use collection.Counter(x) class, to mnake a counter for items in x, then use most_common() method, which returns a list
+  ordered by the most common elements. Each member of the list is a tuple. The first element of the first tuple is the
+  number that occurs most frequently, and the second element is the
+  number of times it occurs.
+  
+  * you can also provide an argument telling it the number of most common elements you want it to return.
+  
+
+Measuring the Dispersion:
+which tells us how far away the numbers in a set of data are from the mean of the data set.
+
+Finding the Range of a Set of Numbers:
+r = max(x) - min(x)
+
+The range tells us the difference between the two extremes in a set of numbers, but what
+if we want to know more about how all of the individual numbers vary from the mean?
+
+Finding the Variance and Standard Deviation:
+
+first need to find the difference of each of the numbers from the mean. 
+The variance is the average of the squares of those differences.
+
+V = sum((xi - xmean)^2) / n
+
+A high variance means that values are far from the mean; a low variance
+means that the values are clustered close to the mean.
+
+Sd = sqrt(V)
+
+Values that are within one standard deviation of the mean can be thought of as fairly typical, whereas values
+that are three or more standard deviations away from the mean can be considered much more atypical—we call such values outliers.
+
+Why do we have these two measures of dispersion—variance and standard deviation?
+
+Variance: Variance is advantageous when performing certain mathematical calculations or statistical
+procedures that require squared values. It's used extensively in statistics to understand the 
+variability in a dataset and to make inferences about the population. However, due to its square unit, 
+it's not as straightforward to interpret in real-world units.
+
+
+Standard Deviation: Standard deviation is more interpretable because it's expressed in the same units 
+as the data. It's a go-to measure when you want to communicate the spread of data to a non-technical 
+audience or when you need to understand the variability in the context of the original data.
+
+
+Calculating the Correlation Between Two Data Sets:
+
+The coefficient can be either positive or negative, and its magnitude can range between −1 and 1 (inclusive).
+
+A correlation coefficient of 0 indicates that there’s no linear correlation between the two quantities. 
+(Note that this doesn’t mean the two quantities are independent of each other. There could still be a nonlinear 
+relationship between them, for example). A coefficient of 1 or close to 1 indicates that
+there’s a strong positive linear correlation; a coefficient of exactly 1 is referred to as perfect positive correlation. 
+Similarly, a correlation coefficient of –1 or close to –1 indicates a strong negative correlation, 
+where -1 indicates a perfect negative correlation.
+
+“correlation doesn’t imply causation.” e.g.correlation between ice cream sales and crime rates.
+
+correlation(x, y) = n * sum(xi * yi) * sum(x) * sum(y) / sqrt((sum(xi^2) - sum(x)^2) (sum(yi^2) - sum(y)^2))
+
+If the correlation were closer to 1, we’d see this reflected in the scatter plot as well—the points would 
+conform more closely to a straight, diagonal line.
+
+>>>plt.scatter(x, y) # to create a scatter plot
+>>>plt.show()
+
