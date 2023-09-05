@@ -1,9 +1,30 @@
-import numpy as np
-
 def correlation(x, y):
+    """
+    Calculate the Pearson correlation coefficient between two lists of data.
+
+    The Pearson correlation coefficient is a measure of the linear relationship
+    between two sets of data. It ranges from -1 (perfect negative correlation)
+    to 1 (perfect positive correlation), with 0 indicating no linear correlation.
+
+    Args:
+        x (list or numpy array): The first list of data.
+        y (list or numpy array): The second list of data.
+
+    Returns:
+        float: The Pearson correlation coefficient between the two lists.
+
+    Raises:
+        ValueError: If the input lists have different lengths.
+
+    Example:
+        >>> x = [1, 2, 3, 4, 5]
+        >>> y = [2, 3, 4, 5, 6]
+        >>> correlation(x, y)
+        1.0
+    """
     try:
-        if(len(x) != len(y)):
-            raise ValueError("Input lists must have the same length for correlation calculation.\n")
+        if len(x) != len(y):
+            raise ValueError("Input lists must have the same length for correlation calculation.")
     except ValueError as e:
         print(e)
         return 0
@@ -18,4 +39,4 @@ def correlation(x, y):
         sumx2 = sum(x2)
         sumy2 = sum(y2)
 
-        return (n * sumxy - sumx * sumy)/((n * sumx2 - sumx**2) * (n * sumy2 - sumy**2)) **0.5
+        return (n * sumxy - sumx * sumy) / ((n * sumx2 - sumx ** 2) * (n * sumy2 - sumy ** 2)) ** 0.5
