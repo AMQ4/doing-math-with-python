@@ -1,0 +1,46 @@
+to define a symbol, include sympy:
+>>> x = sympy.Symbol('x')
+>>> y, z = sympy.symbols('y,z')
+
+*Once you’ve defined symbols, you can carry out basic mathematical
+ operations on them, like (+, -, /, *, and **)
+
+you can use sympy.factor/expand / methods  to factor/expand your expressions
+sympy.pprint() to pretty print 
+and sympy.init_printing(order='rev-lex') then pprint() to print in reverse order.
+
+*you can use subs method on expressions to substitute numbers or other symbols or even expressions in
+for the symbols
+>>> expr1
+2*x + 3*y - 6
+>>> expr1.subs({y:x})
+5*x - 6
+
+use sympy.simplify/ method to simplify your expressions
+
+*converting strings to mathematical expressions:
+ex:
+>>> from sympy import sympify
+>>> from sympy.core.sympify import SympifyError
+>>> expr = input('Enter a mathematical expression: ')
+Enter a mathematical expression: x**2 + 3*x + x**3 + 2x
+>>> try:
+expr = sympify(expr)
+except SympifyError:
+print('Invalid input')
+Invalid input
+*Solving for One Variable in Terms of Others
+solve(expr, theSymbolUWantTOSolveFor, dict=Ture)
+*Solving a System of Linear Equations
+>>> solve((expr1, expr2), dict=True)
+
+*Plotting Using SymPy
+sympy.plot(expr)
+range plot:
+sympy.plot(expr, (x, -10, 10))
+
+you can specify a value for the keywords arguments title='A Line', xlabel='x', ylabel='2x+3'
+sympy.plotting.plot(expr, (x, -10, 10), title='A Line', xlabel='x', ylabel='2x+3')
+>>> sympy.plot(expr1.subs({y:x}), (x, 100, -100), title='A Line', xlabel='x', ylabel='2x+3', show=False)
+to show the graph or not, say that you want to save it inside a variable!.
+
