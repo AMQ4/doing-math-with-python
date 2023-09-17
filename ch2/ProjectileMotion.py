@@ -3,6 +3,8 @@ from math import *
 
 # Acceleration due to gravity (in m/s^2)
 G = 9.8
+time_step = 0.04
+
 
 def get_Dx_Dy_(U: float, theta: float) -> tuple:
     """
@@ -12,6 +14,7 @@ def get_Dx_Dy_(U: float, theta: float) -> tuple:
     :param theta: Launch angle in radians.
     :return: Tuple containing lists of x and y coordinates.
     """
+
     def Dy(t: float) -> float:
         """
         Calculate the vertical displacement at time t.
@@ -37,7 +40,7 @@ def get_Dx_Dy_(U: float, theta: float) -> tuple:
     while t < t_peak:
         x.append(Dx(t))
         y.append(Dy(t))
-        t += 0.001
+        t += time_step
     return (x, y)
 
 
@@ -71,7 +74,7 @@ def maximum_traveled_vertical_distance(u, theta):
     :param theta: Launch angle in degrees.
     :return: Maximum vertical distance in meters.
     """
-    return total_flight_time(u, theta)/2 * ( u * sin(radians(theta)) - 0.5 * G * total_flight_time(u, theta)/2)
+    return total_flight_time(u, theta) / 2 * (u * sin(radians(theta)) - 0.5 * G * total_flight_time(u, theta) / 2)
 
 
 # Set labels and title for the plot
