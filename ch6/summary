@@ -1,0 +1,20 @@
+* use plt.gcf() and gca, to get the current figure and axes respectively
+
+Draw a circle:
+To draw a circle, you can add the Circle patch to the current Axes object:
+>>>>import matplotlib.pyplot as plt
+>>>>
+>>>>axes = plt.gca()
+>>>>axes.add_patch(plt.Circle((0, 0), radius=1))
+>>>>plt.axis('scaled')
+>>>>axes.set_aspect('equal')
+>>>>plt.show()
+
+*The set_aspect() function is used to set the aspect ratio of the graph; 
+ using the equal argument,
+ we ask matplotlib to set the ratio of the length of the x- and y-axes to 1:1.
+
+*you can do the same for any other matplotlib patches
+
+*you can draw fractals by applying a rule transformation functions.
+ see fern_fractal.py program as example.
