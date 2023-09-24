@@ -1,5 +1,6 @@
 import random
 import matplotlib.pyplot as plt
+import matplotlib.animation as animation
 
 
 def transformation_function(point):
@@ -82,11 +83,23 @@ def draw_fern(n):
             raise ValueError(f"Number of points ({n}) is too small; try to increase it, so that it >= 1000.")
     except ValueError as e:
         print(e)
-        return
+    else:
+        points = get_xy_points(n)
+        x = points[0]
+        y = points[1]
+        ax = plt.gca()
 
-    points = get_xy_points(n)
-    x = points[0]
-    y = points[1]
+        def plot(i):
+            ax.plot([x[i]], [y[i]], marker='o', linestyle='', color="blue")
 
-    plt.plot(x, y, marker='o', linestyle='')
-    plt.show()
+        anim = animation.FuncAnimation(
+            plt.gcf(),
+            frames=n,
+            func=plot,
+            interval=0
+        )
+
+        plt.show()
+
+
+draw_fern(5000)
